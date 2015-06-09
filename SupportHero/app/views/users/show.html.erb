@@ -1,2 +1,10 @@
 <h1>User#show</h1>
 <p>Find me in app/views/user/show.html.erb</p>
+
+
+<%= @user.name %>
+
+<% @shifts.each do |shift| %>
+  <%= shift.date %>
+  <%= shift.avail %>
+<% end %>

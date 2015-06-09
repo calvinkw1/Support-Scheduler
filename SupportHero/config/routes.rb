@@ -14,35 +14,26 @@ Rails.application.routes.draw do
 
   get 'users/new'
 
-  get 'users/show'
+  get 'users/show/:id', to: 'users#show', as: 'users_show'
 
   get 'users/edit'
 
   # get '/', to: "shift#index", as: 'root'
 
-  # resources :users
-  # resources :shifts
+  # resources :users do
+  #   resources :shifts
+  # end
 
-
-
-#          Prefix Verb   URI Pattern                               Controller#Action
-#     user_shifts GET    /users/:user_id/shifts(.:format)          shifts#index
-#                 POST   /users/:user_id/shifts(.:format)          shifts#create
-#  new_user_shift GET    /users/:user_id/shifts/new(.:format)      shifts#new
-# edit_user_shift GET    /users/:user_id/shifts/:id/edit(.:format) shifts#edit
-#      user_shift GET    /users/:user_id/shifts/:id(.:format)      shifts#show
-#                 PATCH  /users/:user_id/shifts/:id(.:format)      shifts#update
-#                 PUT    /users/:user_id/shifts/:id(.:format)      shifts#update
-#                 DELETE /users/:user_id/shifts/:id(.:format)      shifts#destroy
-#           users GET    /users(.:format)                          users#index
-#                 POST   /users(.:format)                          users#create
-#        new_user GET    /users/new(.:format)                      users#new
-#       edit_user GET    /users/:id/edit(.:format)                 users#edit
-#            user GET    /users/:id(.:format)                      users#show
-#                 PATCH  /users/:id(.:format)                      users#update
-#                 PUT    /users/:id(.:format)                      users#update
-#                 DELETE /users/:id(.:format)                      users#destroy
-
+#       Prefix Verb URI Pattern                 Controller#Action
+#         root GET  /                           users#index
+# shifts_index GET  /shifts/index(.:format)     shifts#index
+#   shifts_new GET  /shifts/new(.:format)       shifts#new
+#  shifts_show GET  /shifts/show(.:format)      shifts#show
+#  shifts_edit GET  /shifts/edit(.:format)      shifts#edit
+#  users_index GET  /users/index(.:format)      users#index
+#    users_new GET  /users/new(.:format)        users#new
+#   users_show GET  /users/show/:user(.:format) users#show
+#   users_edit GET  /users/edit(.:format)       users#edit
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

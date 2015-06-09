@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @user = User.find params[:id]
+    @shifts = Shift.where('uid= ?', params[:id])
   end
 
   def edit
