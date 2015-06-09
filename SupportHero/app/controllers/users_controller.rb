@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    @shifts = Shift.where('uid= ?', params[:id])
+    @shifts = Shift.where('user_id= ?', params[:id])
   end
 
   def edit

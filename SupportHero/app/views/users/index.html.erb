@@ -2,7 +2,7 @@
 <p>Find me in app/views/user/index.html.erb</p>
 
 <% @users.each do |user| %>
-  <p><%= link_to user.name, user_path(user) %></p>
+  <p><%= link_to user.name, user_path(user.id) %></p>
 <% end %>
 
 <div>

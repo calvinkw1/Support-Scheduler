@@ -1,11 +1,28 @@
 <h3><%= @user.name %>'s Shifts</h3>
 
 <div>
-  <% @user_shifts.each do |shift| %>
-    <%= shift.date %>
-  <% end %>
-</div>
-
-<div>
   <%= link_to 'Edit User', edit_user_path %>
 </div>
+<br>
+<br>
+<table class="table table-striped">
+  <thead>
+    <td>Shift ID</td>
+    <td>Shift Date</td>
+    <td>Available?</td>
+    <td>Weekend?</td>
+    <td>Holiday?</td>
+  </thead>
+  <% @shifts.each do |shift| %>
+    <tr>
+      <td><%= shift.id %></td>
+      <td><%= shift.date %> <br></td>
+      <td><%= shift.avail %></td>
+      <td><%= shift.weekend %></td>
+      <td><%= shift.holiday %></td>
+      <td><%= link_to 'Edit', edit_shift_path(shift.id) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back', users_path %>
