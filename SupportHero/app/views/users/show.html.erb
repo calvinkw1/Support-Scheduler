@@ -1,7 +1,7 @@
 <h3><%= @user.name %>'s Shifts</h3>
 
 <div>
-  <% @shifts.each do |shift| %>
+  <% @user_shifts.each do |shift| %>
     <%= shift.date %>
   <% end %>
 </div>

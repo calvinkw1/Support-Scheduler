@@ -45,21 +45,21 @@ User.create(
 
 
 Shift.create(
-  uid: 1,
+  user_id: 1,
   date: "08/10/15",
   avail: true,
   weekend: false,
   holiday: false
   )
 Shift.create(
-  uid: 2,
+  user_id: 2,
   date: "08/11/15",
   avail: true,
   weekend: true,
   holiday: false
   )
 Shift.create(
-  uid: 3,
+  user_id: 3,
   date: "08/13/15",
   avail: true,
   weekend: false,

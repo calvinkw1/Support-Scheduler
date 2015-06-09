@@ -2,7 +2,7 @@ class CreateShifts < ActiveRecord::Migration
   def change
     create_table :shifts do |t|
       t.string :date
-      t.integer :uid
+      t.integer :user_id
       t.boolean :avail
       t.boolean :weekend
       t.boolean :holiday
