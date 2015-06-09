@@ -1,4 +1,4 @@
-class ShiftController < ApplicationController
+class ShiftsController < ApplicationController
   def index
     @shifts = Shift.all
   end

@@ -1,25 +1,27 @@
 Rails.application.routes.draw do
-  # get 'shift/index'
 
-  # get 'shift/new'
+  get '/', to: "users#index", as: 'root'
 
-  # get 'shift/show'
+  get 'shifts/index'
 
-  # get 'shift/edit'
+  get 'shifts/new'
 
-  # get 'user/index'
+  get 'shifts/show'
 
-  # get 'user/new'
+  get 'shifts/edit'
 
-  # get 'user/show'
+  get 'users/index'
 
-  # get 'user/edit'
+  get 'users/new'
 
-  get '/', to: "shift#index", as: 'root'
+  get 'users/show'
 
-  resources :users do
-    resources :shifts
-  end
+  get 'users/edit'
+
+  # get '/', to: "shift#index", as: 'root'
+
+  # resources :users
+  # resources :shifts
 
 
 
