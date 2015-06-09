@@ -5,3 +5,63 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+User.create(
+  name: 'Sherry'
+  )
+User.create(
+  name: 'Boris'
+  )
+User.create(
+  name: 'Vicente'
+  )
+User.create(
+  name: 'Matte'
+  )
+User.create(
+  name: 'Jack'
+  )
+User.create(
+  name: 'Kevin'
+  )
+User.create(
+  name: 'Zoe'
+  )
+User.create(
+  name: 'Jay'
+  )
+User.create(
+  name: 'Eaden'
+  )
+User.create(
+  name: 'Franky'
+  )
+User.create(
+  name: 'Luis'
+  )
+User.create(
+  name: 'James'
+  )
+
+
+Shift.create(
+  uid: 1,
+  date: "08/10/15",
+  avail: true,
+  weekend: false,
+  holiday: false
+  )
+Shift.create(
+  uid: 2,
+  date: "08/11/15",
+  avail: true,
+  weekend: true,
+  holiday: false
+  )
+Shift.create(
+  uid: 3,
+  date: "08/13/15",
+  avail: true,
+  weekend: false,
+  holiday: true
+  )

@@ -1,4 +1,47 @@
 Rails.application.routes.draw do
+  # get 'shift/index'
+
+  # get 'shift/new'
+
+  # get 'shift/show'
+
+  # get 'shift/edit'
+
+  # get 'user/index'
+
+  # get 'user/new'
+
+  # get 'user/show'
+
+  # get 'user/edit'
+
+  get '/', to: "shift#index", as: 'root'
+
+  resources :users do
+    resources :shifts
+  end
+
+
+
+#          Prefix Verb   URI Pattern                               Controller#Action
+#     user_shifts GET    /users/:user_id/shifts(.:format)          shifts#index
+#                 POST   /users/:user_id/shifts(.:format)          shifts#create
+#  new_user_shift GET    /users/:user_id/shifts/new(.:format)      shifts#new
+# edit_user_shift GET    /users/:user_id/shifts/:id/edit(.:format) shifts#edit
+#      user_shift GET    /users/:user_id/shifts/:id(.:format)      shifts#show
+#                 PATCH  /users/:user_id/shifts/:id(.:format)      shifts#update
+#                 PUT    /users/:user_id/shifts/:id(.:format)      shifts#update
+#                 DELETE /users/:user_id/shifts/:id(.:format)      shifts#destroy
+#           users GET    /users(.:format)                          users#index
+#                 POST   /users(.:format)                          users#create
+#        new_user GET    /users/new(.:format)                      users#new
+#       edit_user GET    /users/:id/edit(.:format)                 users#edit
+#            user GET    /users/:id(.:format)                      users#show
+#                 PATCH  /users/:id(.:format)                      users#update
+#                 PUT    /users/:id(.:format)                      users#update
+#                 DELETE /users/:id(.:format)                      users#destroy
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
