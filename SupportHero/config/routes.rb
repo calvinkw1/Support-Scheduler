@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'users/edit'
 
+  resources :users
+
   # get '/', to: "shift#index", as: 'root'
 
   # resources :users do
