@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def create
+    @user = User.create user_params
+    redirect_to users_index_path
+  end
+
   def show
     @user = User.find params[:id]
     @shifts = Shift.where('uid= ?', params[:id])
@@ -14,4 +19,10 @@ class UsersController < ApplicationController
 
   def edit
   end
+
+  private
+  def user_params
+    params.require(:user).permit(:name) 
+  end
+
 end

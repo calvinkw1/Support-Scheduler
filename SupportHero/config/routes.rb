@@ -1,41 +1,28 @@
 Rails.application.routes.draw do
 
-  get '/', to: "users#index", as: 'root'
-
-  get 'shifts/index'
-
-  get 'shifts/new'
-
-  get 'shifts/show'
-
-  get 'shifts/edit'
-
-  get 'users/index'
-
-  get 'users/new'
-
-  get 'users/show/:id', to: 'users#show', as: 'users_show'
-
-  get 'users/edit'
+  get '/', to: 'main#index', as: 'root'
 
   resources :users
+  resources :shifts
 
-  # get '/', to: "shift#index", as: 'root'
-
-  # resources :users do
-  #   resources :shifts
-  # end
-
-#       Prefix Verb URI Pattern                 Controller#Action
-#         root GET  /                           users#index
-# shifts_index GET  /shifts/index(.:format)     shifts#index
-#   shifts_new GET  /shifts/new(.:format)       shifts#new
-#  shifts_show GET  /shifts/show(.:format)      shifts#show
-#  shifts_edit GET  /shifts/edit(.:format)      shifts#edit
-#  users_index GET  /users/index(.:format)      users#index
-#    users_new GET  /users/new(.:format)        users#new
-#   users_show GET  /users/show/:user(.:format) users#show
-#   users_edit GET  /users/edit(.:format)       users#edit
+#     Prefix Verb   URI Pattern                Controller#Action
+#       root GET    /                          users#index
+#      users GET    /users(.:format)           users#index
+#            POST   /users(.:format)           users#create
+#   new_user GET    /users/new(.:format)       users#new
+#  edit_user GET    /users/:id/edit(.:format)  users#edit
+#       user GET    /users/:id(.:format)       users#show
+#            PATCH  /users/:id(.:format)       users#update
+#            PUT    /users/:id(.:format)       users#update
+#            DELETE /users/:id(.:format)       users#destroy
+#     shifts GET    /shifts(.:format)          shifts#index
+#            POST   /shifts(.:format)          shifts#create
+#  new_shift GET    /shifts/new(.:format)      shifts#new
+# edit_shift GET    /shifts/:id/edit(.:format) shifts#edit
+#      shift GET    /shifts/:id(.:format)      shifts#show
+#            PATCH  /shifts/:id(.:format)      shifts#update
+#            PUT    /shifts/:id(.:format)      shifts#update
+#            DELETE /shifts/:id(.:format)      shifts#destroy
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
