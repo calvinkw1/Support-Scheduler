@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 20150608224357) do
   create_table "shifts", force: :cascade do |t|
     t.string   "date"
     t.integer  "user_id"
-    t.boolean  "avail"
+    t.boolean  "avail",      default: true
     t.boolean  "weekend"
     t.boolean  "holiday"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade do |t|
