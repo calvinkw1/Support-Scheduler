@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20150608224357) do
 
   create_table "shifts", force: :cascade do |t|
-    t.string   "date"
+    t.date     "date"
     t.integer  "user_id"
     t.boolean  "avail",      default: true
     t.boolean  "weekend"

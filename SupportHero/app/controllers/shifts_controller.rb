@@ -47,23 +47,10 @@ class ShiftsController < ApplicationController
   def update
     @shift = Shift.find params[:id]
     user = User.where('name=?', params.values[3].values[1])
-    binding.pry
-    if params.values[3].values[1] == "" && params.values[3].values[2] == false
-      @shift.avail = false
-      @shift.save
-      binding.pry
-    else
-      @shift.user_id = user[0].id
-    end
-
+    @shift.user_id = user[0].id
     @shift.avail = params.values[3].values[2]
-    if @shift.avail == false
-      @names - user.name
-      binding.pry
-    else
-      @shift.save
-      redirect_to shifts_path
-    end
+    @shift.save
+    redirect_to shifts_path
   end
 
   private

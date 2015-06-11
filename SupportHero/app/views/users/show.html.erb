@@ -16,7 +16,7 @@
   <% @shifts.each do |shift| %>
     <tr>
       <td><%= shift.id %></td>
-      <td><%= shift.date %> <br></td>
+      <td><%= shift.date.to_s(:long) %> <br></td>
       <td><%= shift.avail %></td>
       <td><%= shift.weekend %></td>
       <td><%= shift.holiday %></td>
