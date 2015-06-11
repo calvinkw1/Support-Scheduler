@@ -51,11 +51,16 @@ class ShiftsController < ApplicationController
 
   def update
     @shift = Shift.find params[:id]
-    user = User.where('name=?', params.values[3].values[1])
-    @shift.user_id = user[0].id
-    @shift.avail = params.values[3].values[2]
-    @shift.save
-    redirect_to shifts_path
+    user = User.find @shift.user_id
+    @shift.avail = params[:shift][:avail]
+    if @shift.avail == false
+      # logic here to get another employee to fill in the shift
+      @names.delete(user.name)
+      newUser = User.find_by name: @names.sample
+      @shift.user_id = newUser.id
+      @shift.save
+      redirect_to shifts_path
+    end    
   end
 
   def swapShifts

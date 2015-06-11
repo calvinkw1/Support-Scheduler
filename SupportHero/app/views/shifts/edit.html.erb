@@ -19,7 +19,7 @@
   <%= simple_form_for(@shift) do |f| %>
     <p>
       <%= f.input(:user_id, label: 'Swap Shift with:', collection: @names) %>
-      <!-- main.js has ajax call with dropdown change listener to pull up shifts for the selected user -->
+      <!-- main.js has ajax call with dropdown change listener to pull up shifts for the selected user but this ajax call won't fire on initial page load, only after refreshing the page -->
     </p>
   <% end %>
 </div>
