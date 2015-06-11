@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(version: 20150608224357) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.date     "last_skipped_shift", default: '2015-05-12'
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
 end

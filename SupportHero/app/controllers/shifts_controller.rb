@@ -2,8 +2,8 @@ class ShiftsController < ApplicationController
   before_action :all_users, only: [:new, :edit, :update]
 
   def index
-    @shifts = Shift.all
-    @user_shifts = Shift.joins(:user)
+    # adjusted this query to only show shifts 1 month from today
+    @user_shifts = Shift.joins(:user).where(date: Date.today..Date.today.next_month)
   end
 
   def new
@@ -51,16 +51,24 @@ class ShiftsController < ApplicationController
 
   def update
     @shift = Shift.find params[:id]
-    user = User.find @shift.user_id
+    @user = User.find @shift.user_id
     @shift.avail = params[:shift][:avail]
     if @shift.avail == false
       # logic here to get another employee to fill in the shift
-      @names.delete(user.name)
+      @names.delete(@user.name)
       newUser = User.find_by name: @names.sample
-      @shift.user_id = newUser.id
-      @shift.avail = true
-      @shift.save
-      redirect_to shifts_path
+      # check to see if last unavailable shift was > 30 days ago
+      if Date.today - newUser.last_skipped_shift > 30
+        @shift.user_id = newUser.id
+        @shift.avail = true
+        @shift.save
+        @user.last_skipped_shift = @shift.date
+        @user.save
+        redirect_to shifts_path
+      else
+        flash.now[:alert] = "Your last skipped shift was less than 30 days ago! (#{@user.last_skipped_shift})"
+        render :edit
+      end
     else
       @shift.avail = true
       @shift.save

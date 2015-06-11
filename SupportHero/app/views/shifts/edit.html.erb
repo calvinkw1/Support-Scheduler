@@ -1,5 +1,16 @@
 <h3>Editing <span id="user"><%= @user.name %></span>'s Shift on <%= @shift.date %> (Shift ID: <span id="origShiftID"><%= @shift.id %></span> ) </h3>
 
+<% flash.each do |key, value| %>
+  <% if key == "notice" %>
+    <%= content_tag :div, value, class: "text-center alert alert-warning" %>
+  <% elsif key == "alert" %>
+    <%= content_tag :div, value, class: "text-center alert alert-danger" %>
+  <% else %>
+    <%= content_tag :div, value, class: "text-center alert alert-success" %>
+  <% end %>
+<% end %>
+
+
 <div id="update_shift">
   <%= simple_form_for(@shift) do |f|%>
     <p>
