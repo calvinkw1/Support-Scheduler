@@ -15,11 +15,11 @@ class ShiftsController < ApplicationController
   end
 
   def create
-    year = params.values[2].values[0]
-    month = params.values[2].values[1]
-    day = params.values[2].values[2]
+    year = params[:shift][:"date(1i)"]
+    month = params[:shift][:"date(2i)"]
+    day = params[:shift][:"date(3i)"]
     dateStr = "#{year}/#{month}/#{day}"
-    name = params.values[2].values[3]
+    name = params[:shift][:user_id]
     user = User.where('name=?', name)
     if dateStr
       date = Date.civil(year.to_i, month.to_i, day.to_i)
@@ -58,9 +58,14 @@ class ShiftsController < ApplicationController
       @names.delete(user.name)
       newUser = User.find_by name: @names.sample
       @shift.user_id = newUser.id
+      @shift.avail = true
       @shift.save
       redirect_to shifts_path
-    end    
+    else
+      @shift.avail = true
+      @shift.save
+      redirect_to shifts_path
+    end
   end
 
   def swapShifts
