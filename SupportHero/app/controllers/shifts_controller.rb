@@ -15,12 +15,14 @@ class ShiftsController < ApplicationController
   end
 
   def create
-    dateStr = params.values[2].values[0]
-    name = params.values[2].values[1]
-    user = User.where('name=?', params.values[2].values[1])
+    year = params.values[2].values[0]
+    month = params.values[2].values[1]
+    day = params.values[2].values[2]
+    dateStr = "#{year}/#{month}/#{day}"
+    name = params.values[2].values[3]
+    user = User.where('name=?', name)
     if dateStr
-      date_split = dateStr.split('/')
-      date = Date.civil(date_split[2].to_i, date_split[0].to_i, date_split[1].to_i)
+      date = Date.civil(year.to_i, month.to_i, day.to_i)
     end
     if date && name
       shift = Shift.create(date: date, user_id: user[0].id, holiday: date.holiday?, weekend: date.saturday? || date.sunday?)
@@ -52,6 +54,7 @@ class ShiftsController < ApplicationController
     @shift.save
     redirect_to shifts_path
   end
+
 
   private
   # unable to get this private params method to modify

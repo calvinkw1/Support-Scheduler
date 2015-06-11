@@ -31,7 +31,7 @@ User.create(
   name: 'Jay'
   )
 User.create(
-  name: 'Eaden'
+  name: 'Eadon'
   )
 User.create(
   name: 'Franky'
@@ -43,25 +43,23 @@ User.create(
   name: 'James'
   )
 
+starting_order = ["Sherry", "Boris", "Vicente", "Matte", "Jack", 
+    "Sherry", "Matte", "Kevin", "Kevin", "Vicente", "Zoe", "Kevin",
+     "Matte", "Zoe", "Jay", "Boris", "Eadon", "Sherry", "Franky", 
+     "Sherry", "Matte", "Franky", "Franky", "Kevin", "Boris", "Franky",
+      "Vicente", "Luis", "Eadon", "Boris", "Kevin", "Matte", "Jay", 
+      "James", "Kevin", "Sherry", "Sherry", "Jack", "Sherry", "Jack"]
 
-Shift.create(
-  user_id: 1,
-  date: "2015/06/10",
-  avail: true,
-  weekend: false,
-  holiday: false
-  )
-Shift.create(
-  user_id: 2,
-  date: "2015/06/11",
-  avail: true,
-  weekend: true,
-  holiday: false
-  )
-Shift.create(
-  user_id: 3,
-  date: "2015/06/12",
-  avail: true,
-  weekend: false,
-  holiday: true
-  )
+counter = 0
+starting_order.each do |user|
+  user = User.find_by name: user
+  date = Date.today + counter
+  Shift.create(
+    user_id: user.id,
+    date: date,
+    avail: true,
+    weekend: date.saturday? || date.sunday?,
+    holiday: date.holiday?
+    )
+  counter += 1
+end
