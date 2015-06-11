@@ -39,7 +39,10 @@ class ShiftsController < ApplicationController
 
   def edit
     @shift = Shift.find params[:id]
-    @user = User.find params.values[2]
+    @user = User.find params[:format]
+    if @names.include?(@user.name)
+      @names.delete(@user.name)
+    end
     # @names = []
     # User.all.each do |user|
     #   @names << user.name
@@ -54,6 +57,27 @@ class ShiftsController < ApplicationController
     @shift.save
     redirect_to shifts_path
   end
+
+  def swapShifts
+    user = User.find_by name: params[:user]
+    origShift = Shift.find params[:origShiftID]
+    newShift = Shift.find params[:newShiftID]
+    oldUser = newShift.user_id
+    newShift.user_id = user.id
+    newShift.save
+    origShift.user_id = oldUser
+    origShift.save
+    redirect_to shifts_path
+  end
+
+  def get_shifts
+    user = User.find_by name: params[:name]
+    @shifts = user.shifts
+    respond_to do |format|
+      format.json { render json: @shifts}
+    end
+  end
+
 
 
   private
@@ -74,6 +98,10 @@ class ShiftsController < ApplicationController
     User.all.each do |user|
       @names << user.name
     end
+  end
+
+  def swap_shifts
+
   end
 
 end

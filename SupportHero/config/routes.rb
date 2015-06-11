@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   get '/', to: 'main#index', as: 'root'
 
+  get '/getShifts', to: 'shifts#get_shifts', as: 'get_shifts'
+
+  post '/swapShifts', to: 'shifts#swapShifts', as: 'swapShifts'
+
   resources :users
   resources :shifts
 

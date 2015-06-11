@@ -9,7 +9,7 @@
   <thead>
     <td>Shift ID</td>
     <td>Shift Date</td>
-    <td>Shift UID</td>
+    <td>Employee ID</td>
     <td>Name</td>
     <td>Available?</td>
     <td>Weekend?</td>
@@ -24,7 +24,7 @@
       <td><%= shift.avail %></td>
       <td><%= shift.weekend %></td>
       <td><%= shift.holiday %></td>
-      <td><%= link_to 'Edit', edit_shift_path(shift.id) %></td>
+      <td><%= link_to 'Edit', edit_shift_path(shift.id, shift.user_id) %></td>
     </tr>
   <% end %>
 </table>

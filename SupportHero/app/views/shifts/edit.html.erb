@@ -1,19 +1,46 @@
-<h3>Editing <%= @user.name %>'s Shift on <%= @shift.date %></h3>
+<h3>Editing <span id="user"><%= @user.name %></span>'s Shift on <%= @shift.date %> (Shift ID: <span id="origShiftID"><%= @shift.id %></span> ) </h3>
 
-<%= simple_form_for(@shift) do |f|%>
-  <p>
-    <%= f.input(:date, autofocus: true, placeholder: 'MM/DD/YYYY', readonly: true) %>
-  </p>
-  <p>
-  <!-- This isn't displaying the current shift owner's name, always defaulting to Sherry(UID 1) but it does update on the main shifts page. Removed the default option instead. -->
-  <!-- Fixed this with changing default option to selected -->
-    <%= f.input(:user_id, label: 'Swap Shift with:', collection: @names, selected: @user.name) %>
-  </p>
-  <p>
-    <%= f.input(:avail, label: 'Available?', collection: [true, false]) %>
-  </p>
+<div id="update_shift">
+  <%= simple_form_for(@shift) do |f|%>
+    <p>
+      <%= f.input(:date, as: :string, autofocus: true, placeholder: 'MM/DD/YYYY', readonly: true) %>
+    </p>
 
-  <p>
-    <%= f.button(:submit, 'Update Shift', class: "btn btn-primary") %>
-  </p>
-<% end %>
+    <p>
+      <%= f.input(:avail, label: 'Available?', collection: [true, false]) %>
+    </p>
+    <p>
+      <%= f.button(:submit, 'Update Shift', class: "btn btn-primary") %>
+    </p>
+  <% end %>
+</div>
+
+<div>
+  <%= simple_form_for(@shift) do |f| %>
+    <p>
+      <%= f.input(:user_id, label: 'Swap Shift with:', collection: @names) %>
+      <!-- main.js has ajax call with dropdown change listener to pull up shifts for the selected user -->
+    </p>
+  <% end %>
+</div>
+
+<div>
+  <table class="table table-striped availShifts">
+  <thead>
+    <td>Select</td>
+    <td>Shift ID</td>
+    <td>Shift Date</td>
+    <td>Employee ID</td>
+    <td>Available?</td>
+    <td>Weekend?</td>
+    <td>Holiday?</td>
+  </thead>
+  <tbody></tbody>
+  </table>
+  <button id="swap" class="btn btn-primary">Swap</button>
+</div>
+
+
+<div>
+  <%= link_to 'Back', shifts_path %>
+</div>
