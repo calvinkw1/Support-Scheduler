@@ -1,2 +1,19 @@
-<h3>Editing Shift on <%= @shift.date %></h3>
+<h3>Editing <%= @user.name %>'s Shift on <%= @shift.date %></h3>
 
+<%= simple_form_for(@shift) do |f|%>
+  <p>
+    <%= f.input(:date, autofocus: true, placeholder: 'MM/DD/YYYY', readonly: true) %>
+  </p>
+  <p>
+  <!-- This isn't displaying the current shift owner's name, always defaulting to Sherry(UID 1) but it does update on the main shifts page. Removed the default option instead. -->
+  <!-- Fixed this with changing default option to selected -->
+    <%= f.input(:user_id, label: 'Swap Shift with:', collection: @names, selected: @user.name) %>
+  </p>
+  <p>
+    <%= f.input(:avail, label: 'Available?', collection: [true, false]) %>
+  </p>
+
+  <p>
+    <%= f.button(:submit, 'Update Shift', class: "btn btn-primary") %>
+  </p>
+<% end %>
